@@ -1,0 +1,28 @@
+{
+  "realm": "quark-bank",
+  "enabled": true,
+  "sslRequired": "none",
+  "roles": {"realm": [{"name": "customer"}, {"name": "operator"}]},
+  "clients": [{
+    "clientId": "quark-bank-api",
+    "enabled": true,
+    "publicClient": true,
+    "standardFlowEnabled": false,
+    "directAccessGrantsEnabled": true,
+    "protocol": "openid-connect",
+    "protocolMappers": [{
+      "name": "bank-api-audience",
+      "protocol": "openid-connect",
+      "protocolMapper": "oidc-audience-mapper",
+      "config": {"included.client.audience": "quark-bank-api", "access.token.claim": "true", "id.token.claim": "false"}
+    }]
+  }],
+  "users": [
+    {"id": "alice", "username": "alice", "enabled": true, "firstName": "Alice", "lastName": "Demo", "email": "alice@example.test", "emailVerified": true,
+     "credentials": [{"type": "password", "value": "alice-local-only", "temporary": false}], "realmRoles": ["customer"]},
+    {"id": "bob", "username": "bob", "enabled": true, "firstName": "Bob", "lastName": "Demo", "email": "bob@example.test", "emailVerified": true,
+     "credentials": [{"type": "password", "value": "bob-local-only", "temporary": false}], "realmRoles": ["customer"]},
+    {"id": "operator", "username": "operator", "enabled": true, "firstName": "Operator", "lastName": "Demo", "email": "operator@example.test", "emailVerified": true,
+     "credentials": [{"type": "password", "value": "operator-local-only", "temporary": false}], "realmRoles": ["operator"]}
+  ]
+}
